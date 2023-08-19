@@ -3,6 +3,8 @@ import Navbar from "./components/Navbar"
 import Home from "./ui/Home"
 import "./base.css"
 import Layout from "./ui/Layout"
+import { Provider } from "react-redux"
+import { store } from "./store"
 
 function App() {
   const router = createBrowserRouter([
@@ -18,7 +20,9 @@ function App() {
     }
   ])
   return (
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   )
 }
 

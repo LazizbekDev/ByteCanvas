@@ -1,28 +1,24 @@
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Categories from '../features/Categories';
 import Posts from '../features/Posts'
+import { getPosts, reset } from '../redux/post/postSlice';
 
 const Home = () => {
-    const featuredPosts = [
-        {
-            id: 1,
-            title: 'Exploring the Depths of 3D Modeling',
-            excerpt: 'Learn how to create stunning 3D models using Blender.',
-            slug: 'exploring-3d-modeling',
-        },
-        {
-            id: 2,
-            title: 'Exploring the Depths of 3D Modeling',
-            excerpt: 'Learn how to create stunning 3D models using Blender.',
-            slug: 'exploring-3d-modeling',
-        },
-        {
-            id: 3,
-            title: 'Exploring the Depths of 3D Modeling',
-            excerpt: 'Learn how to create stunning 3D models using Blender.',
-            slug: 'exploring-3d-modeling',
+    const { isLoading, posts, isSuccess } = useSelector((state) => state.posts);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        return () => {
+            if (isSuccess) {
+                dispatch(reset())
+            }
         }
-        // Add more featured posts
-    ];
+    }, [dispatch, isSuccess])
+
+    useEffect(() => {
+        dispatch(getPosts())
+    }, [dispatch])
 
     const categories = [
         {
@@ -52,7 +48,7 @@ const Home = () => {
 
             {/* Display the FeaturedPosts component */}
             <h2 className="text-2xl font-semibold mt-8">Featured Posts</h2>
-            <Posts posts={featuredPosts} />
+            {!isLoading && <Posts posts={posts} />}
         </div>
     )
 }
