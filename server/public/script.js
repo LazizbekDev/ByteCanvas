@@ -6,7 +6,7 @@ const apiData = [
     },
     {
         path: '/api/users/:id',
-        method: 'get',
+        method: 'put',
         description: 'Retrieve a specific user by ID'
     },
 ];
