@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Landing Page</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
 </head>
 
 <body>
     <div class="container">
         <header class="hero">
             <h1>ByteCanvas Stories API page</h1>
-            <p>STAY CURIOUSKEEP LEARNING</p>
-            <a href="http://localhost:5173/" target="_blank" class="btn">Explore</a>
+            <p>STAY CURIOUS, KEEP LEARNING</p>
         </header>
 
         <section id="about" class="about">
-            <h2>About Us</h2>
+            <h2>About Project</h2>
             <p>Explore a world of technology, programming, 3D modeling, and more. Dive into our collection of articles
                 and tutorials to enhance your skills and knowledge.</p>
 
@@ -30,8 +30,24 @@
 
                 <a href="http://localhost:5000/">➜  Local:    http://localhost:5000/</a>
             </code>
-        </section>
 
+            <div class="documentation">
+                <h1>API Documentation</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Route Path</th>
+                            <th>Request Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableId" />
+                </table>
+            </div>
+        </section>
+        <div class="popup" id="popup">
+            <span class="popup-text" id="popupText">Copied to clipboard!</span>
+        </div>
         <footer class="footer">
             <p>&copy; 2023 Simple Landing Page</p>
         </footer>
