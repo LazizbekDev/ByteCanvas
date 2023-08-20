@@ -13,13 +13,13 @@ const data = [
         title: 'Mastering Web Accessibility: A Comprehensive Guide',
         excerpt: 'Learn how to create inclusive web experiences that cater to all users.',
         slug: 'mastering-web-accessibility',
-      },
-      {
+    },
+    {
         id: 3,
         title: 'The Art of Code Refactoring: Strategies and Best Practices',
         excerpt: 'Discover techniques to improve code quality and maintainability through refactoring.',
         slug: 'art-of-code-refactoring',
-      },
+    },
     // Add more featured posts
 ];
 
@@ -35,4 +35,11 @@ export const getContent = async (req, res) => {
     } catch (err) {
         return res?.send("something went to wrong")
     }
+}
+
+export const createPost = async (req, res) => {
+    // Save Markdown content to a file
+    const filePath = path.join(path.resolve('./'), 'posts', `${req.body.slug}.md`);
+    fs.writeFileSync(filePath, req.body.content);
+    return res.json(req.body.content);
 }

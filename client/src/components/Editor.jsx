@@ -1,10 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux"
 import MDEditor from '@uiw/react-md-editor';
+import { createContent } from '../redux/post/postSlice';
+import { reset } from '../redux/post/postSlice';
 
 export default function Editor() {
     const [value, setValue] = useState(`**Hello world!!!**`);
     const [inputText, setInputText] = useState('');
     const [slugText, setSlugText] = useState('');
+    const { message, isSuccess } = useSelector((state) => state.posts);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        return () => {
+            if (isSuccess) {
+                dispatch(reset())
+            }
+        }
+    }, [dispatch, isSuccess])
 
     const handleInputChange = (event) => {
         const text = event.target.value;
@@ -19,14 +32,16 @@ export default function Editor() {
             .replace(/[^\w-]+/g, '');
     };
 
-    const sendData = () => {
+    const sendData = async () => {
         const data = {
             title: inputText,
             slug: slugText,
-            content: value
+            content: value,
+            author: "Lazizbek Tojiboev"
         }
 
         console.log(data)
+        dispatch(createContent(data));
     }
     return (
         <>

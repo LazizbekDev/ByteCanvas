@@ -18,12 +18,19 @@ export const getPosts = createAsyncThunk('posts/get', async (_, thunkAPI) => {
     }
 });
 
-
 export const postContent = createAsyncThunk('postContent/get', async (slug, thunkAPI) => {
     try {
         console.log(slug)
 
         return await postServices.getContent(slug);
+    } catch (err) {
+        return thunkAPI.rejectWithValue(err.toString());
+    }
+});
+
+export const createContent = createAsyncThunk('createContent/post', async (data, thunkAPI) => {
+    try {
+        return await postServices.createPost(data);
     } catch (err) {
         return thunkAPI.rejectWithValue(err.toString());
     }
@@ -58,6 +65,20 @@ export const postSlice = createSlice({
                 state.markdown = action.payload;
             })
             .addCase(postContent.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
+
+            .addCase(createContent.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(createContent.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.message = action.payload;
+            })
+            .addCase(createContent.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;

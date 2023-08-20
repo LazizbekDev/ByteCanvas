@@ -9,13 +9,19 @@ const getPosts = async () => {
 
 const getContent = async (slug) => {
     const res = await axios.get(`${base}/${slug}`);
-
     return res.data
 }
 
+const createPost = async (data) => {
+    const res = await axios.post(`${base}/${data.slug}`, data);
+    return res.data
+}
+
+
 const postServices = {
     getPosts,
-    getContent
+    getContent,
+    createPost
 };
 
 export default postServices;
