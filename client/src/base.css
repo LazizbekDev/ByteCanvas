@@ -58,3 +58,11 @@ h6 {
     font-size: 0.63em !important;
     font-weight: bold !important;
 }
+.chip-label {
+    margin-right: 4px;
+}
+
+.chip-delete {
+    cursor: pointer;
+    color: rgb(129, 73, 62);
+}

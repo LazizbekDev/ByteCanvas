@@ -4,10 +4,12 @@ import colors from "colors";
 import postRoutes from "./routes/posts.js";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import connect from "./db.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 config()
+connect()
 const app = express();
 app.use(express.json());
 app.use(express.static('public'));

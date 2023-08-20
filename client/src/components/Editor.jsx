@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import MDEditor from '@uiw/react-md-editor';
 import { createContent } from '../redux/post/postSlice';
 import { reset } from '../redux/post/postSlice';
+import ChipsInput from './Chip';
 
 export default function Editor() {
     const [value, setValue] = useState(`**Hello world!!!**`);
@@ -18,6 +19,13 @@ export default function Editor() {
             }
         }
     }, [dispatch, isSuccess])
+
+    const [tags, setTags] = useState([]);
+
+    const handleTagsChange = (newTags) => {
+      setTags(newTags);
+    };
+  
 
     const handleInputChange = (event) => {
         const text = event.target.value;
@@ -37,10 +45,9 @@ export default function Editor() {
             title: inputText,
             slug: slugText,
             content: value,
-            author: "Lazizbek Tojiboev"
+            author: "Lazizbek Tojiboev",
+            tags
         }
-
-        console.log(data)
         dispatch(createContent(data));
     }
     return (
@@ -50,6 +57,7 @@ export default function Editor() {
                 <input
                     placeholder='start with your creative title'
                     value={inputText}
+                    required
                     onChange={(e) => handleInputChange(e)}
                     className="input text-3xl w-full focus:ring rounded focus:outline-none focus:ring-black-400 border-b-2 placeholder:uppercase placeholder:text-sm"
                 />
@@ -57,6 +65,8 @@ export default function Editor() {
                     <p className='text-sm text-slate-500'><b className='text-slate-600'>Slug:</b> {slugText}</p>
                 )}
             </label>
+
+            <ChipsInput tags={tags} tagChanges={handleTagsChange} />
             <MDEditor
                 value={value}
                 onChange={setValue}
