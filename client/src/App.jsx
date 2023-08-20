@@ -7,6 +7,7 @@ import Error from "./ui/Error"
 import BlogPost from "./features/BlogPost"
 
 import "./base.css"
+import Editor from "./components/Editor"
 
 function App() {
   const router = createBrowserRouter([
@@ -26,6 +27,10 @@ function App() {
           path: "/category/:slug",
           element: <h1>Category Slice</h1>
         },
+        {
+          path: "/editor",
+          element: <Editor />
+        }
       ]
     }
   ])

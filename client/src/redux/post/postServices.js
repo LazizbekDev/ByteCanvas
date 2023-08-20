@@ -1,14 +1,21 @@
 import axios from "axios";
 
+const base = '/api/posts'
 const getPosts = async () => {
-    const base = '/api/posts/'
     const res = await axios.get(base);
 
     return res.data
 }
 
+const getContent = async (slug) => {
+    const res = await axios.get(`${base}/${slug}`);
+
+    return res.data
+}
+
 const postServices = {
-    getPosts
+    getPosts,
+    getContent
 };
 
 export default postServices;

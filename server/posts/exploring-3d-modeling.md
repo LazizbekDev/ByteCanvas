@@ -24,7 +24,7 @@ As we embark on this journey through the world of minimalism, we invite you to e
 
 Stay tuned for more articles that delve into the intersections of tech, design, and minimalism. Until then, keep things simple and embrace the power of minimum.
 
-![Minimalism](https://example.com/images/minimalism.jpg)
+![Minimalism](https://images.unsplash.com/photo-1501127122-f385ca6ddd9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bWluaW1hbGlzbXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60)
 
 ---
 Tags: Minimalism, Design, Programming, Lifestyle
