@@ -1,3 +1,6 @@
+import path from 'path';
+import fs from "fs"
+
 const data = [
     {
         id: 1,
@@ -22,4 +25,14 @@ const data = [
 
 export const featuredPosts = (req, res) => {
     return res.json(data)
+}
+
+export const getContent = async (req, res) => {
+    try {
+        const filePath = path.join(path.resolve('./'), 'posts', `${req.params.slug}.md`);
+        const content = fs.readFileSync(filePath, 'utf-8');
+        return res.json(content)
+    } catch (err) {
+        return res.send("something went to wrong")
+    }
 }

@@ -5,9 +5,9 @@ const apiData = [
         description: 'Get featured posts'
     },
     {
-        path: '/api/users/:id',
-        method: 'put',
-        description: 'Retrieve a specific user by ID'
+        path: '/api/posts/:slug',
+        method: 'get',
+        description: 'Get a markdown post content'
     },
 ];
 
